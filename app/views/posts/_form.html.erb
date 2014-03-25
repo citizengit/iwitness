@@ -1,0 +1,28 @@
+<%= form_for @post do |f| %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_field :body %>
+  </p>
+  <p>
+    <%= f.label :image %><br />
+    <%= f.text_field :image %>
+  </p>  
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <% if @post.latitude %>
+    <p>Lat: <%= @post.latitude %> Lon: <%= @post.longitude %></p>
+  <% end %>
+  <%= f.label :categories %>
+  <% Category.order(:title).each do |category| %>
+    <span><%= category.title %></span>
+    <%= check_box_tag 'post[category_ids][]', category.id, category.in?(@post.categories)  %>
+  <% end %>
+
+  <p><%= f.submit %></p>
+<% end %>

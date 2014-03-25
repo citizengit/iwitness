@@ -1,0 +1,42 @@
+<h1><%= @post.title %></h1>
+<h4><%= @post.address %></h4>
+<p>Lat:<%= @post.latitude %> Lon:<%= @post.longitude %></p>
+<section><%= @post.body %></section>
+<%= image_tag(@post.image) %>
+<p class="krissnote">
+  <% if @post.rating_total %>
+    <p>rating <%= @post.rating_total %> from <%= @post.rating_count %></p>
+  <% end %>
+  add rating for this post as a + or - value and links for this
+    <%= form_tag(post_path(@post), method: "post") do %>
+      <%= hidden_field_tag(:rating_up, 1) %>
+      <%= submit_tag("+1") %>
+    <% end %>
+    <%= form_tag(post_path(@post), method: "post") do %>
+      <%= hidden_field_tag(:rating_down, 1) %>
+      <%= submit_tag("-1") %>
+    <% end %>
+</p>
+
+<section id="user_detail">
+  <%= link_to(@post.user.name, user_path(@post.user)) %>
+  <p class="krissnote">add users rating</p>
+  <%= image_tag(@post.user.image) %>
+</section>
+
+<nav id="meta">
+  <h1>DELETE THIS CRAP</h1>
+  <ul>
+    <li><%= link_to("Edit Post", edit_post_path(@post)) %></li>
+    <li><%= link_to("Delete Post", @post, :confirm => "Are you sure you want to delete Post #{@post.title.upcase}?", :method => :delete) %></li>
+    <li><%= link_to("New Post", new_post_path) %></li>
+  </ul>
+</nav>
+
+<h1>MAKE THIS BETTER</h1>
+<h2>Related Posts:</h2>
+<% @post.categories.each do |category| %>
+  <section>
+    <h2><%= link_to(category.title, category) %></h2>
+  </section>
+<% end %>

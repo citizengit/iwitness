@@ -1,0 +1,32 @@
+<section id="column-left" class="home">
+    <h1>stay informed</h1>
+    <h2>instantly. where ever you may land.
+</section>
+<section id="column-right">
+  <div class="inner">
+
+    <%= form_tag("/index", method: "post") do %>
+      <%= label_tag(:address, "Your epicentre") %>
+      <%= text_field_tag(:address, session[:address], :autofocus => true)%>
+      <%= label_tag(:distance, "Informational radius") %>
+      <%= range_field_tag(:distance, value = session[:distance], options = {:min => 1, :max => 10})%>
+      <%= submit_tag("Go") %>
+    <% end %>
+
+    <div class="login">  
+      <%== userbox %>
+      <% if !@current_user.present? %>
+        <% if flash[:notice].present? %> 
+          <h2><%= flash[:notice] %></h2> 
+        <% end %>
+        <%= form_tag("/login", method: "post", class: "login") do %>
+          <%= label_tag(:name, "username") %>
+          <%= text_field_tag(:name) %>
+          <%= label_tag(:password, "password") %>
+          <%= password_field_tag(:password) %>
+          <%= submit_tag("Login") %>
+        <% end %>
+      <% end %>
+    </div>  
+  </div>
+</section>

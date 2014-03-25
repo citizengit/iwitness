@@ -1,0 +1,11 @@
+<% if flash[:notice].present? %> 
+  <h2><%= flash[:notice] %></h2> 
+<% end %>
+<form action='/login' method="post">
+  <label for='name'>username</label>
+  <input type="text" id="name" name="name" autofocus placeholder='username'>
+  <label for='password'>password</label>
+  <input type="password" id="password" name="password">
+
+  <button>login</button>
+<form>

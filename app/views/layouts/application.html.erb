@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Iwitness</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= params[:controller] %> <%= params[:action] %>">
+  <header>
+    <nav id="main">
+      <ul>
+        <li><%= link_to("Home", root_path) %></li>
+        <li><%= link_to("News", posts_path) %></li>
+      </ul>
+      <ul id="user">
+        <%== usernav %>
+      </ul>
+    </nav>
+  </header>
+
+  <div id='container'>
+    <%= yield %>
+  </div>
+  
+  <footer>
+    <nav id="footer">
+      <ul>
+        <li><a href="">About What's@</a></li>
+        <li><a href="">Terms of Service</a></li>
+        <li><a href="">Privacy</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+    </nav>
+  </footer>
+</body>
+</html>

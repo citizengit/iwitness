@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Iwitness</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtDL6XVP-2ZsRV9jdCybm__mXoBEp-NUg&sensor=false">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          // center: new google.maps.LatLng(-34.397, 150.644)
+          center: new google.maps.LatLng(<%= session[:latitude] %>, <%= session[:longitude] %>),
+          zoom: 16
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= params[:controller] %> <%= params[:action] %>">
+  <header>
+    <nav id="main">
+      <ul>
+        <li><%= link_to("Home", root_path) %></li>
+        <li><%= link_to("News", posts_path) %></li>
+        <li><%= link_to("Categories", categories_path)%></li>
+        <li><%= link_to("Users", users_path)%></li>
+      </ul>
+      <ul id="user">
+        <%== usernav %>
+      </ul>
+    </nav>
+  </header>
+
+  <div id='container'>
+    <%= yield %>
+  </div>
+  
+  <footer>
+    <nav id="footer">
+      <ul>
+        <li><a href="">About What's@</a></li>
+        <li><a href="">Terms of Service</a></li>
+        <li><a href="">Privacy</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+    </nav>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+  <%= form_for @user do |f| %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :image %><br />
+    <%= f.text_field :image %>
+  </p>  
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+    <% if @user.latitude %>
+      <br>
+      <span class="info">Lat: <%= @user.latitude %> Lon: <%= @user.longitude %></p></span>
+    <% end %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>
