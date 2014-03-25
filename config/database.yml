@@ -5,3 +5,10 @@ development:
   pool: 5
   username: kriss
   password:
+
+  production:
+  adapter: postgresql
+  encoding: unicode
+  database: iwitness_production
+  pool: 5
+  password:

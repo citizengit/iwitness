@@ -38,6 +38,8 @@ gem 'geocoder'
 #gmap - i don't think I'm actually using this..?
 gem 'gmaps4rails'
 
+gem 'rails_12factor'
+
 # debugging gems cos they're awesome:
 group :development do
   gem 'pry-rails' 
