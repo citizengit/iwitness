@@ -5,8 +5,9 @@ Iwitness::Application.routes.draw do
   # replaces the above to try deal with session search better
   post 'index' => 'session#index'
   #sessions
+  get '/login' => 'session#new'
   post '/login' => 'session#create'
-  get '/logout' => 'session#destroy', :as => 'logout'
+  delete '/login' => 'session#destroy'
   #get '/login' => 'session#destroy', :as => 'logout'
   # voting on posts
   post 'posts/:id' => 'posts#vote'
