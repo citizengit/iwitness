@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
 
   def index
-    raise params.inspect
     if !session[:address]
       @address = request.location
       if @address.longitude == '0.0' && @address.latitude == '0.0'
