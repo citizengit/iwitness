@@ -1,48 +1,128 @@
-h1{
-  font-size: 60px;
-}
-.inner article{
-  border-bottom: dotted 1px #FFF;
-  padding:  .25em 0;
+.unpopped{
+  width: 80px;
+  overflow: hidden;
 
-  h2,
+  .details{
+    display: none;
+  }
+}
+.popped{
+  width: 260px;
+
+  .details{
+    display: block;
+  }
+}
+.unpopped,
+.popped{
+  background: rgba(40,40,40,0.8);
+  border-bottom-left-radius: 40px;
+  border-top-left-radius: 40px;
+  position: relative;
+  height: 80px;
+  float: right;
+}
+
+body.posts{
+  #container{
+    background: #333;
+    min-height: 650px;
+  }
+
+  #column-right .inner{
+    background: none;
+    z-index: 2;
+    text-align: right;
+  }
+
+  .post-teaser{
+    height: 80px;
+  }
+  div{
+    transition: all 1s ease;
+  }
+  .post-image{
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 5px;
+    left: 5px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 24px;
+    
+    .rating-good{
+      color: green;
+      font-weight: 900;
+      display: block;
+    }
+    .rating-bad{
+      color: red;
+      font-weight: 900;
+      display: block;
+    }
+    .rating-count{
+      display: block;
+      border-top: dotted 1px #CCC;
+      color: #CCC;
+      font-size: 14px;
+
+    }
+  }
   h2 a{
     color: #FFF;
     font-size: 16px;
     border: 0;
     display: block;
     font-weight: 400;
-
+    padding: 5px;
+    display: block;
+    margin-left: 80px;
+    color: #F60;
+  }
+  p.address,
+  p.posted{
+    padding: 5px 5px 0 5px;
+    text-align: right;
+    display: block;
+    margin: 0;
   }
 
 
-}
 
-.accordion .hide{
-  display: none;
-}
-.accordion h2{
-  cursor: pointer;
-}
+  h1{
+    color: #F60;
+    padding: 20px;
+    text-shadow: 0px 0px 1px 1px rgba(255,255,255,0.4);
 
-
-body.posts h1{
-  color: #53A4FF;
-  padding: 20px;
-  text-shadow: 0px 0px 1px 1px rgba(255,255,255,0.4);
-
-  span{
-    font-size: 20px; 
-    letter-spacing: -0.02em;  
-    line-height: 24px;
+    span{
+      font-size: 20px; 
+      letter-spacing: -0.02em;  
+      line-height: 24px;
+    }
   }
-
 }
+
+
+
+
 
 
 /* just for adding the map as a background */
 body.posts.index #container{
   position: relative;
+}
+
+#map-canvas {
+  width: 100%;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  bottom: 0;
+  right: 0; 
+  z-index: -1;
 }
 body.posts.index #map-canvas{
   width: 100%;

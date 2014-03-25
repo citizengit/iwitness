@@ -6,7 +6,8 @@ Iwitness::Application.routes.draw do
   post 'index' => 'session#index'
   #sessions
   post '/login' => 'session#create'
-  delete '/login' => 'session#destroy'
+  get '/logout' => 'session#destroy', :as => 'logout'
+  #get '/login' => 'session#destroy', :as => 'logout'
   # voting on posts
   post 'posts/:id' => 'posts#vote'
   # basic cruds:

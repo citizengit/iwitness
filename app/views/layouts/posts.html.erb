@@ -9,6 +9,17 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtDL6XVP-2ZsRV9jdCybm__mXoBEp-NUg&sensor=false">
     </script>
     <script type="text/javascript">
+    //give the google maps something to toggle
+
+      function make_visible(id) {
+        var e = document.getElementById(id);
+          e.className = 'popped';
+      };
+      function make_invisible(id) {
+        var e = document.getElementById(id);
+          e.className = 'unpopped';
+      };
+
       // make some variables cos it looks impressive
       var map;
       var epicentre = new google.maps.LatLng(<%= session[:latitude] %>, <%= session[:longitude] %>);
@@ -78,9 +89,16 @@
               map: map,
               animation: google.maps.Animation.DROP,
               title: '<%= post.title %>'
+
           });
           google.maps.event.addListener(marker_<%= post.id %>, 'click', function () {
             window.location.href = '/posts/<%= post.id %>';
+          });
+          google.maps.event.addListener(marker_<%= post.id %>, 'mouseover', function () {
+            make_visible('post<%= post.id %>');
+          });
+          google.maps.event.addListener(marker_<%= post.id %>, 'mouseout', function () {
+            make_invisible('post<%= post.id %>');
           });
         <% end %>
 

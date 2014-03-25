@@ -46,8 +46,15 @@ h1{
   color: #FFF;
   text-transform: uppercase;
 }
+.info{
+  color: #53A4FF;
+  font-weight: 300;
+  font-style: italic;
+}
 
-
+/***************************************** navigations
+*
+*/
 header,
 footer{
   width: 100%;
@@ -61,6 +68,17 @@ footer{
   background: linear-gradient(to bottom,  #ffffff 0%,#cccccc 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4);
+}
+header{
+  nav{
+    border-bottom: solid 3px #53A4FF;
+    position: relative;
+  }
+  nav ul#user{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 footer{
   position: fixed;
@@ -81,11 +99,9 @@ nav{
     li{
       display: inline-block;
       height: 27px;
-
     }
   }
-
-  
+ 
   a{
     display: block;
     height: 27px;
@@ -106,15 +122,12 @@ nav{
   }
   .info{
     color: #53A4FF;
-    font-weight: 300;
-    font-style: italic;
   }
 }
 header nav a:hover{
   height: 30px;
   margin-bottom: -3px;
 }
-
 .meta a{
   height: auto;
   line-height: 20px;
@@ -124,25 +137,10 @@ header nav a:hover{
   border-radius: 5px;
 }
 
-header nav{
-  border-bottom: solid 3px #53A4FF;
-  position: relative;
-}
-header nav ul#user{
-  position: absolute;
-  top: 0;
-  right: 0;
-}
 
-#map-canvas {
-  width: 100%;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  bottom: 0;
-  right: 0; 
-  z-index: -1;
-}
+/***************************************** basic layout
+*
+*/
 #container {
   width: 100%;
   max-width: 960px;
@@ -166,16 +164,11 @@ header nav ul#user{
   display: inline-block;
   z-index: 2;
 }
-#column-right .inner{
-  margin: 20px;
-  background: rgba(40,40,40,0.8);
-  border-radius: 5px;
-  padding: 10px;
-  min-height: 500px;
-  z-index: 5;
-  position: relative;
-}
 
+
+/***************************************** forms
+*
+*/
 form{
   padding: 10px;
 }
@@ -197,8 +190,3 @@ input[type="submit"]{
   cursor: pointer;
   margin-top: 1em;
 }
-
-
-
-
-
