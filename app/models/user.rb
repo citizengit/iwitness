@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   validates :image, :presence => true, :length => { :minimum => 2 }
   
   has_many :posts
-  has_and_belongs_to_many :postvotes, :class_name => "Postvote", :foreign_key => "post_id"
 
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
