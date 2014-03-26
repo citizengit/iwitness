@@ -5,6 +5,16 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+    //toggle on/off
+    function toggle_visibility(id) {
+      var e = document.getElementById(id);
+      if(e.className == 'toggle-on')
+        e.className = 'toggle-off';
+      else
+        e.className = 'toggle-on';
+    };
+  </script>
 </head>
 <body class="<%= params[:controller] %> <%= params[:action] %>">
   <header>

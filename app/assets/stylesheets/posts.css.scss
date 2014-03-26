@@ -151,8 +151,11 @@ section.posts article,
   background: rgba(0,0,0,0.1);
 }
 #post-user{
-  background: rgba(83,164,255,0.5);
+  background: rgba(0,0,0,0.3);
 
+  h2{
+    padding: 10px 0 0 0 !important;
+  }
   h2 a{
     color: #FFF;
   }

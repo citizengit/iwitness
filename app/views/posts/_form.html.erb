@@ -1,28 +1,31 @@
 <%= form_for @post do |f| %>
   <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :title %>
+    <%= f.text_field :title, :placeholder => "What did you see?" %>
   </p>
   <p>
-    <%= f.label :body %><br />
-    <%= f.text_field :body %>
+    <%= f.label :body %>
+    <%= f.text_area :body , :placeholder => "Tell people all about it", size: "77x6" %>
   </p>
   <p>
-    <%= f.label :image %><br />
-    <%= f.text_field :image %>
+    <%= f.label :image %>
+    <%= f.text_field :image, :placeholder => "URL of your photo"%>
   </p>  
   <p>
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.label :address %>
+    <%= f.text_field :address, :value => session[:address] %>
   </p>
   <% if @post.latitude %>
     <p>Lat: <%= @post.latitude %> Lon: <%= @post.longitude %></p>
   <% end %>
   <%= f.label :categories %>
-  <% Category.order(:title).each do |category| %>
-    <span><%= category.title %></span>
-    <%= check_box_tag 'post[category_ids][]', category.id, category.in?(@post.categories)  %>
-  <% end %>
-
+  <ul class="check-box">
+    <% Category.order(:updated_at).each do |category| %>
+      <li>
+        <%= check_box_tag 'post[category_ids][]', category.id, category.in?(@post.categories)  %>
+        <span><%= category.title %></span>
+      </li>
+    <% end %>
+  </ul>
   <p><%= f.submit %></p>
 <% end %>

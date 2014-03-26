@@ -9,11 +9,23 @@ module ApplicationHelper
         <li>#{link_to('sign out', login_path, :method => :delete, :confirm => 'Are you sure you wish to log out?')}</li>
       "
     else
+      if flash[:notice].present? 
+        links +=  "<li class='info'>#{ flash[:notice] }</li>"
+      else
+        links +=  "<li class='info'>You are not logged in</li>"
+      end
+      
       links += "
-        <li class='info'>Register to contribute</li>
-        <li>#{link_to('create account', new_user_path)}</li>
-        <li>#{link_to('sign in', root_path)}</li>
-      "
+        <li>#{link_to('register', new_user_path)}</li>
+        <li class='toggle-holder'><a href='#' onclick=\"toggle_visibility('loginform');return false;\">login</a>
+      "  
+      links +=
+        form_tag("/login", method: "post", class: (flash[:notice].present? ? "toggle-on" : "toggle-off"), id: "loginform") do
+          concat text_field_tag(:name)
+          concat password_field_tag(:password)
+          concat submit_tag("GO")
+        end
+      links += "</li>"
     end
     #admin
     if @current_user && @current_user.admin

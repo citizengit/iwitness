@@ -17,16 +17,15 @@
 
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :image, :address, :latitude, :longitude, :password, :password_confirmation
-
+  has_many :posts
   
+  #form validation
   validates :name, :presence => true, :uniqueness => true
   validates :email, :presence => true
   validates :image, :presence => true, :length => { :minimum => 2 }
   validates :password, length: { minimum: 6 }
   has_secure_password
   
-  has_many :posts
-
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 

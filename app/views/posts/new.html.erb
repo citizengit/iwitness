@@ -1,2 +1,14 @@
-<h1>Posts#new</h1>
-<%= render 'form' %>
+<section class="details">
+  <h1><span>Share</span> New Post</h1>
+  <% if @post.errors.any? %>
+    <h4>Please fix the following <%= 'error'.pluralize(@post.errors.count)%> before resubmitting form</h4>
+    <ul class="error">
+      <% @post.errors.full_messages.each do |msg|  %>
+        <li class="info"><%= msg %></li>
+      <% end %>  
+    </ul>
+  <% else %>
+    <p>What have you seen? Share it here - along with a photo if you have one</p>
+  <% end %>
+  <%= render 'form' %>
+</section>

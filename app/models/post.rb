@@ -19,10 +19,13 @@
 class Post < ActiveRecord::Base
   attr_accessible :title, :body, :image, :rating_up, :rating_down, :user_id, :address, :latitude, :longitude
   belongs_to :user
-  
-
   has_and_belongs_to_many :categories
   
+  #form validation
+  validates :title, :presence => true, :length => { :minimum => 4 }
+  validates :body, :presence => true, :length => { :minimum => 16 }
+  validates :address, :presence => true
+
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 

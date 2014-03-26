@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_filter :check_if_logged_in, :except => [:show, :new, :create]
+
   def index
     @users = User.all
   end
@@ -36,4 +39,14 @@ class UsersController < ApplicationController
     user.destroy
     redirect_to users_path, :notice => "user deleted"
   end
+
+  private
+  def check_if_logged_in
+    redirect_to(root_path) if @current_user.nil?
+  end
+  
+  def check_if_admin
+    redirect_to(root_path) if @current_user.nil? || @current_user.admin == false
+  end
+
 end

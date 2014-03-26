@@ -1,22 +1,22 @@
 class PostsController < ApplicationController
+
+  layout "posts", :only => :index
+  layout "application" , :except => :index
+
+  before_filter :check_if_logged_in, :except => [:show, :index]
+
   def index
     @posts = Post.near(session[:address], session[:distance], {:units => :km})
     session[:latitude] = Geocoder.search(session[:address])[0].latitude
     session[:longitude] = Geocoder.search(session[:address])[0].longitude
-
-    render :layout => 'posts'
-
   end
 
   def show
     @post = Post.find params[:id]
-    # @nearbys = @post.nearbys
-    render :layout => 'application'
   end
 
   def new
     @post = Post.new
-    render :layout => 'application'
   end
 
   def create
@@ -57,4 +57,14 @@ class PostsController < ApplicationController
     post.destroy
     redirect_to posts_path, :notice => "post deleted"
   end
+
+  private
+  def check_if_logged_in
+    redirect_to(root_path) if @current_user.nil?
+  end
+  
+  def check_if_admin
+    redirect_to(root_path) if @current_user.nil? || @current_user.admin == false
+  end
+
 end

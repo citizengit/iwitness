@@ -9,8 +9,17 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtDL6XVP-2ZsRV9jdCybm__mXoBEp-NUg&sensor=false">
     </script>
     <script type="text/javascript">
-    //give the google maps something to toggle
+      
+      //toggle on/off
+      function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        if(e.className == 'toggle-on')
+          e.className = 'toggle-off';
+        else
+          e.className = 'toggle-on';
+      };
 
+      //give the google maps something to toggle
       function make_visible(id) {
         var e = document.getElementById(id);
           e.className = 'popped';
@@ -62,7 +71,7 @@
           {
             featureType: 'water',
             stylers: [
-              { color: '#112299' }
+              { color: '#333333' }
             ]
           }
         ];
