@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find params[:id]
+    # @nearbys = @post.nearbys
     render :layout => 'application'
   end
 
@@ -31,9 +32,9 @@ class PostsController < ApplicationController
   def vote
     @post = Post.find params[:id]
     if params[:rating_up]
-      @post.rating_up += params[:rating_up].to_i
+      @post.rating_up == nil ? ( @post.rating_up = 1 ) : ( @post.rating_up += 1 )
     elsif params[:rating_down]
-      @post.rating_down += params[:rating_down].to_i
+      @post.rating_down == nil ? ( @post.rating_down = 1 ) : ( @post.rating_down += 1 )
     else
       redirect_to @post
     end

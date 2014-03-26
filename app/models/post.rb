@@ -28,20 +28,12 @@ class Post < ActiveRecord::Base
 
   # calculate the posts honesty rating
   def rating_total
-    if self.rating_up
-      self.rating_up - self.rating_down
-    else
-      0
-    end
+    ( self.rating_up.present? ? self.rating_up : 0 ) - ( self.rating_down.present? ? self.rating_down : 0 )
   end
 
   # calculate the posts honesty rating count
   def rating_count
-    if self.rating_up
-      self.rating_up + self.rating_down
-    else
-      0
-    end
+    ( self.rating_up.present? ? self.rating_up : 0 ) + ( self.rating_down.present? ? self.rating_down : 0 )
   end
 
 

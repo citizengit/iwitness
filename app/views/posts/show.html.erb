@@ -16,6 +16,7 @@
     </ul>
   </nav>
 
+  <p class='info centered'>This Post By:</p>
   <div id="post-user">
     <div class="post-image" style="background: url(<%= @post.user.image%>); background-size: cover;">
     </div>
@@ -70,10 +71,9 @@
 
 
 </section>
-
 <section class="posts">
-<!-- will try bring on nearby posts here using @event.nearbys in the posts controller-->
-  <% #@user.posts.each do |post| %>
-    <%#= render :partial => 'postloop', :locals => {:post => post} %>
-  <% #end %>
+  <p class='info centered'>More News Within <%= session[:distance] %>km of <%= @post.address %></p>
+  <% @post.nearbys(session[:distance]).each do |post| %>
+    <%= render :partial => 'users/postloop', :locals => {:post => post} %>
+  <% end %>
 </section>
