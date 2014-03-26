@@ -1,7 +1,15 @@
-<h1>New User</h1>
-<% if @user.errors.any? %>
-  <% @user.errors.full_messages.each do |msg|  %>
-    <%= msg %>
+<section class="details">
+  <%= image_tag(@user.image, :class => "image-user") %>
+  <h1><span>Welcome</span> New User</h1>
+  <% if @user.errors.any? %>
+    <h4>Please fix the following <%= 'error'.pluralize(@user.errors.count)%> before resubmitting form</h4>
+    <ul class="error">
+      <% @user.errors.full_messages.each do |msg|  %>
+        <li class="info"><%= msg %></li>
+      <% end %>  
+    </ul>
+  <% else %>
+    <p>Welcome to <span class="epicenter">epicenter</span> - your place to find and share news and events as they happen around you.</p>
   <% end %>
-<% end %>  
-<%= render 'form' %>
+  <%= render 'form' %>
+</section>

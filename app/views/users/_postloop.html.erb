@@ -1,0 +1,25 @@
+  <article class="<%= cycle('bg1', 'bg2') %>">
+    <div class="post-image" style="background: url(<%= post.image%>); background-size: cover;">
+    </div>
+    <div class="post-rating">
+      <% if post.rating_total && post.rating_total > 0 %>
+        <span class="rating-good"><%= post.rating_total %></span>
+        <span class="rating-count">
+          <span class="tiny">from</span>
+          <%= post.rating_count %>
+          <span class="tiny"><%= 'vote'.pluralize(post.rating_count) %></span>
+        </span>
+      <% elsif post.rating_total && post.rating_total <= 0 %>
+        <span class="rating-bad"><%= post.rating_total %></span>
+        <span class="rating-count">
+          <span class="tiny">from</span>
+          <%= post.rating_count %>
+          <span class="tiny"><%= 'vote'.pluralize(post.rating_count) %></span>
+        </span>
+      <% else %> 
+        <span class="info">no rating</span>
+      <% end %>
+    </div>
+    <h2><%= link_to(post.title, post) %></h2>
+    <p class="info"><%= post.address %> :: <%= time_ago_in_words(post.created_at) %> ago</p>
+  </article>

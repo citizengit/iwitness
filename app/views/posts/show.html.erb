@@ -1,42 +1,79 @@
-<h1><%= @post.title %></h1>
-<h4><%= @post.address %></h4>
-<p>Lat:<%= @post.latitude %> Lon:<%= @post.longitude %></p>
-<section><%= @post.body %></section>
-<%= image_tag(@post.image) %>
-<p class="krissnote">
-  <% if @post.rating_total %>
-    <p>rating <%= @post.rating_total %> from <%= @post.rating_count %></p>
-  <% end %>
-  add rating for this post as a + or - value and links for this
-    <%= form_tag(post_path(@post), method: "post") do %>
-      <%= hidden_field_tag(:rating_up, 1) %>
-      <%= submit_tag("+1") %>
-    <% end %>
-    <%= form_tag(post_path(@post), method: "post") do %>
-      <%= hidden_field_tag(:rating_down, 1) %>
-      <%= submit_tag("-1") %>
-    <% end %>
-</p>
+<section class="details">
+  <%= image_tag(@post.image, :class => "image-user") %>
+  <h1><%= @post.title %></h1>
+  <p class="main">
+    <%= @post.body %>
+  </p>
+  <p class="info"><%= @post.address %> :: <%= time_ago_in_words(@post.created_at) %> ago</p>
 
-<section id="user_detail">
-  <%= link_to(@post.user.name, user_path(@post.user)) %>
-  <p class="krissnote">add users rating</p>
-  <%= image_tag(@post.user.image) %>
+  <nav id="meta">
+    <ul>
+      <% if @current_user == @post.user || @current_user.admin %>
+        <li><%= link_to("Update Post", edit_post_path(@post)) %></li>
+        <li><%= link_to("Delete Post", @post, :confirm => "Are you sure you want to delete Post #{@post.title.upcase}?", :method => :delete) %></li>
+      <% end %>
+      <li><%= link_to("New Post", new_post_path) %></li>
+    </ul>
+  </nav>
+
+  <div id="post-user">
+    <div class="post-image" style="background: url(<%= @post.user.image%>); background-size: cover;">
+    </div>
+    <!-- show rating +/- buttons -->
+    <div class="post-rating">
+      <span class="rating-good">
+        <%= form_tag(post_path(@post), method: "post") do %>
+          <%= hidden_field_tag(:rating_up, 1) %>
+          <%= submit_tag("+1") %>
+        <% end %>
+      </span>
+      <span class="rating-bad">
+        <%= form_tag(post_path(@post), method: "post") do %>
+          <%= hidden_field_tag(:rating_down, 1) %>
+          <%= submit_tag("-1") %>
+        <% end %>
+      </span>
+    </div>
+    <!-- show post rating -->
+    <div class="post-rating">
+      <% if @post.rating_total && @post.rating_total > 0 %>
+        <span class="rating-good"><%= @post.rating_total %></span>
+        <span class="rating-count">
+          <span class="tiny">from</span>
+          <%= @post.rating_count %>
+          <span class="tiny"><%= 'vote'.pluralize(@post.rating_count) %></span>
+        </span>
+      <% elsif @post.rating_total && @post.rating_total <= 0 %>
+        <span class="rating-bad"><%= @post.rating_total %></span>
+        <span class="rating-count">
+          <span class="tiny">from</span>
+          <%= @post.rating_count %>
+          <span class="tiny"><%= 'vote'.pluralize(@post.rating_count) %></span>
+        </span>
+      <% else %> 
+        <span class="info">no rating</span>
+      <% end %>
+    </div>
+    <!-- show user info -->
+    <h2><%= link_to(@post.user.name, user_path(@post.user)) %></h2>
+    <p class="info"><%== postuserrating %></p>
+    
+  </div>
+
+
+
+    
+
+
+
+
+
+
 </section>
 
-<nav id="meta">
-  <h1>DELETE THIS CRAP</h1>
-  <ul>
-    <li><%= link_to("Edit Post", edit_post_path(@post)) %></li>
-    <li><%= link_to("Delete Post", @post, :confirm => "Are you sure you want to delete Post #{@post.title.upcase}?", :method => :delete) %></li>
-    <li><%= link_to("New Post", new_post_path) %></li>
-  </ul>
-</nav>
-
-<h1>MAKE THIS BETTER</h1>
-<h2>Related Posts:</h2>
-<% @post.categories.each do |category| %>
-  <section>
-    <h2><%= link_to(category.title, category) %></h2>
-  </section>
-<% end %>
+<section class="posts">
+<!-- will try bring on nearby posts here using @event.nearbys in the posts controller-->
+  <% #@user.posts.each do |post| %>
+    <%#= render :partial => 'postloop', :locals => {:post => post} %>
+  <% #end %>
+</section>

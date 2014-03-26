@@ -1,2 +1,5 @@
-<h1>Edit User</h1>
-<%= render 'form' %>
+<section class="details">
+  <%= image_tag(@user.image, :class => "image-user") %>
+  <h1><span>Editing User: </span><%= @user.name %></h1>
+  <%= render 'form' %>
+</section>

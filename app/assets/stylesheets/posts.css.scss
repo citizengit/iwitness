@@ -23,7 +23,7 @@
   float: right;
 }
 
-body.posts{
+body.posts.index{
   #container{
     background: #333;
     min-height: 650px;
@@ -41,57 +41,7 @@ body.posts{
   div{
     transition: all 1s ease;
   }
-  .post-image{
-    height: 70px;
-    width: 70px;
-    border-radius: 100%;
-    position: absolute;
-    z-index: 0;
-    top: 5px;
-    left: 5px;
-    text-align: center;
-    line-height: 35px;
-    font-size: 24px;
-    
-    .rating-good{
-      color: green;
-      font-weight: 900;
-      display: block;
-    }
-    .rating-bad{
-      color: red;
-      font-weight: 900;
-      display: block;
-    }
-    .rating-count{
-      display: block;
-      border-top: dotted 1px #CCC;
-      color: #CCC;
-      font-size: 14px;
-
-    }
-  }
-  h2 a{
-    color: #FFF;
-    font-size: 16px;
-    border: 0;
-    display: block;
-    font-weight: 400;
-    padding: 5px;
-    display: block;
-    margin-left: 80px;
-    color: #F60;
-  }
-  p.address,
-  p.posted{
-    padding: 5px 5px 0 5px;
-    text-align: right;
-    display: block;
-    margin: 0;
-  }
-
-
-
+  
   h1{
     color: #F60;
     padding: 20px;
@@ -104,10 +54,6 @@ body.posts{
     }
   }
 }
-
-
-
-
 
 
 /* just for adding the map as a background */
@@ -130,3 +76,161 @@ body.posts.index #map-canvas{
   top: 0;
   left: 0;
 }
+
+/********************************** generic way of listing user profile *****/
+.details{
+  padding: 20px 40px;
+
+  img{
+    float: right;
+    border-radius: 5px;
+    max-width: 260px;
+  }
+}
+.posts article{
+  margin-bottom: 5px;
+  clear: both;
+  height: 80px;
+  border-radius: 40px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+
+  h2 a{
+    color: #53A4FF;
+    font-size: 20px;
+    border: 0;
+    display: block;
+    font-weight: 900;
+    display: block;
+    margin-left: 85px;
+    padding-top: 15px;
+    line-height: 20px;
+  }
+  p.info{
+    margin-left: 85px;
+  }
+
+}
+
+
+
+/********************************** generic way of listing all posts through iteration *****/
+section.posts{
+  padding: 20px 40px;
+  clear: both;
+}
+section.posts article,
+#post-user{
+  margin-bottom: 5px;
+  clear: both;
+  height: 80px;
+  border-radius: 40px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+
+  h2 a{
+    color: #53A4FF;
+    font-size: 20px;
+    border: 0;
+    display: block;
+    font-weight: 900;
+    display: block;
+    margin-left: 85px;
+    padding-top: 15px;
+    line-height: 20px;
+  }
+  p.info{
+    margin-left: 85px;
+  }
+
+}
+.bg1{
+  background: rgba(255,255,255,0.1);
+}
+.bg2{
+  background: rgba(0,0,0,0.1);
+}
+#post-user{
+  background: rgba(83,164,255,0.5);
+
+  h2 a{
+    color: #FFF;
+  }
+}
+.post-image{
+  height: 70px;
+  width: 70px;
+  border-radius: 100%;
+  float: left;
+  margin: 5px;
+}
+.post-rating{
+  height: 70px;
+  width: 70px;
+  border-radius: 5%;
+  float: right;
+  margin: 5px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 24px;
+  background: rgba(255,255,255,0.2);
+
+  form, input{
+    padding: 0;
+    margin: 0;
+    font-weight: 900;
+  }
+  input{
+    width: 70px;
+    line-height: 35px;
+  }
+  .rating-good input[type="submit"]{
+    background: green;
+  }
+  .rating-bad input[type="submit"]{
+    background: red;
+  }
+  .rating-good{
+    color: green;
+    font-weight: 900;
+    display: block;
+  }
+  .rating-bad{
+    color: red;
+    font-weight: 900;
+    display: block;
+  }
+  .rating-count{
+    display: block;
+    border-top: dotted 2px rgba(0,0,0,0.1);
+    color: #CCC;
+    font-size: 14px;
+  }
+}
+h2 a{
+  color: #FFF;
+  font-size: 20px;
+  border: 0;
+  display: block;
+  font-weight: 900;
+  display: block;
+  margin-left: 85px;
+  padding-top: 10px;
+  line-height: 20px;
+}
+p.address,
+p.posted{
+  padding: 5px 5px 0 5px;
+  text-align: right;
+  display: block;
+  margin: 0;
+}
+.tiny{
+  font-size: 7px;
+}
+
+
+
+
+
+

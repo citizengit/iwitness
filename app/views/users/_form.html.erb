@@ -1,31 +1,30 @@
   <%= form_for @user do |f| %>
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :autofocus => true, :class => 'field-short' %>
   </p>
   <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
   </p>
   <p>
-    <%= f.label :image %><br />
-    <%= f.text_field :image %>
+    <%= f.label :image, "image URL" %>
+    <%= f.url_field :image %>
   </p>  
   <p>
-    <%= f.label :address %><br />
+    <%= f.label :address %>
     <%= f.text_field :address %>
     <% if @user.latitude %>
-      <br>
       <span class="info">Lat: <%= @user.latitude %> Lon: <%= @user.longitude %></p></span>
     <% end %>
   </p>
   <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <%= f.label :password %>
+    <%= f.password_field :password, :class => 'field-short' %>
   </p>
   <p>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class => 'field-short' %>
   </p>
 
   <p><%= f.submit %></p>
