@@ -18,6 +18,10 @@ class PostsController < ApplicationController
   def all
     @title = params[:sort_by]
     case params[:sort_by]
+    when 'popular'
+      @posts = Post.order('rating_up ASC')
+    when 'debunked'
+      @posts = Post.order('rating_down ASC')
     when 'latest'
       @posts = Post.all.sort
     when 'oldest'

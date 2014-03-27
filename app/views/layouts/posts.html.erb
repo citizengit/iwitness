@@ -31,6 +31,10 @@
 
       // make some variables cos it looks impressive
       var map;
+      //var image = {
+      //  url: '/images/epicenter-map.png',
+      //  size: new google.maps.Size(38, 50)
+      //};
       var epicentre = new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>);
       var epicentreMap = 'custom_style';
       var radius = <%= @distance.to_i*1000 %>;
@@ -97,7 +101,8 @@
               position: new google.maps.LatLng(<%= post.latitude %>, <%= post.longitude %>),
               map: map,
               animation: google.maps.Animation.DROP,
-              title: '<%= post.title %>'
+              title: '<%= post.title %>',
+              //icon: image
 
           });
           google.maps.event.addListener(marker_<%= post.id %>, 'click', function () {
