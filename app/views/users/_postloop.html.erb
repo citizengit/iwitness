@@ -22,5 +22,7 @@
       <% end %>
     </div>
     <h2><%= link_to(post.title, post) %></h2>
-    <p class="info"><%= post.address %> :: <%= time_ago_in_words(post.created_at) %> ago</p>
+    <p class="info">
+      <%= link_to post.address, posts_path(:address => post.address, :distance => 1), :method=> :get %> <%= time_ago_in_words(post.created_at) %> ago
+    </p>
   </article>

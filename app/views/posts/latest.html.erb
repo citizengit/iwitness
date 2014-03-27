@@ -1,0 +1,8 @@
+<section class="details">
+  <h1><span>Latest</span>Posts</h1>
+  <table cellpadding="10px" border="0" cellspacing="0">  
+    <% @posts.each do |post| %>
+      <%= render :partial => 'postloop', :locals => {:post => post} %>
+    <% end %>
+  </table>
+</section>

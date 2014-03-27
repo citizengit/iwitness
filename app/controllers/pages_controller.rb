@@ -13,6 +13,7 @@ class PagesController < ApplicationController
       session[:address] = address
       session[:distance] = 5
     end
+    @post = Post.new
   end
   
 end

@@ -58,6 +58,9 @@ h4{
 h4{
   margin: 1em 0 -0.5em 0;
 }
+.orange{
+  color: #F60 !important;
+}
 
 /***************************************** navigations */
 header,
@@ -177,7 +180,7 @@ header nav a:hover{
 
 /***************************************** forms */
 form{
-  padding: 10px 0;
+  padding: 0;
   max-width: 600px;
 }
 form label{

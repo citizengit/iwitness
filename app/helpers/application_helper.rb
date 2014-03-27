@@ -10,7 +10,7 @@ module ApplicationHelper
       "
     else
       if flash[:notice].present? 
-        links +=  "<li class='info'>#{ flash[:notice] }</li>"
+        links +=  "<li class='info orange'>#{ flash[:notice] }</li>"
       else
         links +=  "<li class='info'>You are not logged in</li>"
       end

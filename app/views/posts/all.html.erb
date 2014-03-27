@@ -1,0 +1,18 @@
+<section class="details">
+  <h1>
+    <span>
+      <%= @title ? @title : 'all' %>
+    </span>
+    Posts
+  </h1>
+    <%= form_tag("/posts/all", method: "post") do %>
+      <%= label_tag(:sort_by, "Sort Posts By") %>
+      <%= select_tag(:sort_by, options_for_select(['latest', 'oldest', 'closest', 'furthest', 'alphabetical'])) %>
+      <%= submit_tag("Sort") %>
+    <% end %>
+  <table cellpadding="10px" border="0" cellspacing="0">  
+    <% @posts.each do |post| %>
+      <%= render :partial => 'users/postloop', :locals => {:post => post} %>
+    <% end %>
+  </table>
+</section>

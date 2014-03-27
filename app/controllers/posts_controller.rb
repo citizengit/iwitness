@@ -6,9 +6,31 @@ class PostsController < ApplicationController
   before_filter :check_if_logged_in, :except => [:show, :index]
 
   def index
-    @posts = Post.near(session[:address], session[:distance], {:units => :km})
-    session[:latitude] = Geocoder.search(session[:address])[0].latitude
-    session[:longitude] = Geocoder.search(session[:address])[0].longitude
+    @posts = Post.near(params[:address], params[:distance], {:units => :km})
+    #session[:latitude] = Geocoder.search(session[:address])[0].latitude
+    #session[:longitude] = Geocoder.search(session[:address])[0].longitude
+    pinpoint = Geocoder.search(params[:address])[0]
+    @latitude = pinpoint.latitude
+    @longitude = pinpoint.longitude
+    @distance = params[:distance]
+  end
+
+  def all
+    @title = params[:sort_by]
+    case params[:sort_by]
+    when 'latest'
+      @posts = Post.all.sort
+    when 'oldest'
+      @posts = Post.all.sort.reverse
+    when 'closest'
+      @posts = Post.near(session[:address])
+    when 'furthest'
+      @posts = Post.near(session[:address]).reverse
+    when 'alphabetical'
+      @posts = Post.order('title ASC')
+    else
+      @posts = Post.all.sort
+    end
   end
 
   def show
@@ -23,7 +45,7 @@ class PostsController < ApplicationController
     @post = Post.new params[:post]
     @post.user_id = @current_user.id
     if @post.save
-      redirect_to posts_path
+      redirect_to @post
     else
       render :new
     end

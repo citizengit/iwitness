@@ -1,4 +1,19 @@
-<h1>Users#index</h1>
-<% @users.each do |user| %>
-  <%= link_to(user.name, user) %>
-<% end %>
+<section class="details">
+  <h1><span>All</span>Users</h1>
+  <table cellpadding="10px" border="0" cellspacing="0">  
+    <% @users.each do |user| %>
+      <tr class="<%= cycle('bg1', 'bg2') %>"> 
+        <td valign="top">
+          <div class="post-image" style="background: url(<%= user.image %>); background-size: cover;"></div>
+        </td>
+        <td valign="top"><%= link_to(user.name, user) %></td>
+        <td valign="top">
+          <% user.posts.each do |post| %>
+            <%= link_to(post.title, post_path(post)) %> :: <%= post.address %><br> 
+          <% end %>
+        </td>
+        <td valign="top"><%= user.admin == true ? "administrator" : "user" %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>

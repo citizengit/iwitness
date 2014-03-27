@@ -16,6 +16,10 @@
   <% end %>
 
   <div class="inner">
+    <%= render :partial => 'posts/form' %>
+  </div>
+
+  <div class="inner">
     <p>Login at top to post news</p>
     <p>Start your search here</p>
     <%= form_tag("/index", method: "post") do %>

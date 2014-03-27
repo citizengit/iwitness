@@ -31,9 +31,9 @@
 
       // make some variables cos it looks impressive
       var map;
-      var epicentre = new google.maps.LatLng(<%= session[:latitude] %>, <%= session[:longitude] %>);
+      var epicentre = new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>);
       var epicentreMap = 'custom_style';
-      var radius = <%= session[:distance].to_i*1000 %>;
+      var radius = <%= @distance.to_i*1000 %>;
       // attempt to set zoom level appropriate to the distance 
       // 1 => 15
       // 2 => 14
@@ -45,13 +45,13 @@
       // 8 => 13
       // 9 => 12
       // 10 => 12
-      <%=  if session[:distance].to_i == 1 
+      <%=  if @distance.to_i == 1 
             zoomer = 15
-          elsif session[:distance].to_i <= 3 
+          elsif @distance.to_i <= 3 
             zoomer = 14
-          elsif session[:distance].to_i <= 8
+          elsif @distance.to_i <= 8
             zoomer = 13
-          elsif session[:distance].to_i <=10
+          elsif @distance.to_i <=10
             zoomer = 12
           end
       %>

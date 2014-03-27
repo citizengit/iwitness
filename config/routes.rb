@@ -9,7 +9,13 @@ Iwitness::Application.routes.draw do
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
   #get '/login' => 'session#destroy', :as => 'logout'
+  #extra post returns - sorting
+  get 'posts' =>'posts#index'
+
+  get 'posts/all' =>'posts#all'
+  post 'posts/all' =>'posts#all'
   # voting on posts
+  
   post 'posts/:id' => 'posts#vote'
   # basic cruds:
   resources :categories, :posts, :users

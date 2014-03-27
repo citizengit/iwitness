@@ -2,16 +2,20 @@ class SessionController < ApplicationController
 
   def index
     if params[:address]
-      session[:address] = params[:address]
-      session[:distance] = params[:distance]
-      redirect_to posts_path
+      session[:address] = address = params[:address]
+      session[:distance] = distance = params[:distance]
+      redirect_to posts_path(:address => address, :distance => distance)
     else
       session[:address] = nil
       flash[:notice] = "Please enter a location"
       redirect_to root_path
     end
-    session[:latitude] = Geocoder.search(session[:address])[0].latitude
-    session[:longitude] = Geocoder.search(session[:address])[0].longitude
+  end
+
+  def post
+    address = params[:address]
+    distance = params[:distance]
+    redirect_to posts_path(:address => address, :distance => distance)
   end
 
   def new
