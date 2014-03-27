@@ -20,6 +20,9 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :body, :image, :rating_up, :rating_down, :user_id, :address, :latitude, :longitude
   belongs_to :user
   has_and_belongs_to_many :categories
+
+  #image uploader
+  mount_uploader :image, ImageUploader
   
   #form validation
   validates :title, :presence => true, :length => { :minimum => 4 }

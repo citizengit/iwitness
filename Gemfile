@@ -40,6 +40,12 @@ gem 'gmaps4rails'
 
 gem 'rails_12factor'
 
+#for carrierwave image uploads
+gem 'carrierwave'
+gem 'dotenv-rails'
+gem 'fog', '~> 1.3.1'
+
+
 # debugging gems cos they're awesome:
 group :development do
   gem 'pry-rails' 
