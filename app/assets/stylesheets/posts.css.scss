@@ -1,57 +1,72 @@
-.unpopped{
-  width: 80px;
-  overflow: hidden;
-
-  .details{
-    display: none;
-  }
-}
-.popped{
-  width: 260px;
-
-  .details{
-    display: block;
-  }
-}
 .unpopped,
 .popped{
   background: rgba(40,40,40,0.8);
   border-bottom-left-radius: 40px;
   border-top-left-radius: 40px;
-  position: relative;
   height: 80px;
-  float: right;
+  position: absolute;
+  transition: all 1s ease;
 }
+.unpopped{
+  width: 200px;
+  top: 750px;
+  left: 380px;
+  background: rgba(40,40,40,0.2);
+}
+.popped{
+  width: 600px;
+  top: 550px;
+  left: 180px;
+  box-shadow: 0px 1px 1px 3px rgba(0,0,0,0.3);
+}
+
 
 body.posts.index{
   #container{
     background: #333;
     min-height: 650px;
+    position: relative;
+    overflow: hidden;
   }
-
-  #column-right .inner{
-    background: none;
-    z-index: 2;
-    text-align: right;
+  #helper{
+    position: relative;
+    background: rgba(40,40,40,0.8);
+    text-align: center;
+    width: 60%;
+    padding: 5px 0;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px 3px rgba(0,0,0,0.2);
+    p{
+      margin: 5px auto;
+    }
   }
-
-  .post-teaser{
-    height: 80px;
-  }
-  div{
+  #options{
+    position: absolute;
     transition: all 1s ease;
+    background: rgba(40,40,40,0.8);
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px 3px rgba(0,0,0,0.2);
   }
-  
+  #options.toggle-off{
+    top: -500px;
+    overflow: hidden;
+  }
+  #options.toggle-on{
+    top: 60px;
+  }
+  #options form{
+    width: 40%;
+    margin: 20px auto;
+    text-align: left;
+  }
   h1{
+    color: #FFF;
+    padding: 20px;
+  }
+  h2{
     color: #F60;
     padding: 20px;
-    text-shadow: 0px 0px 1px 1px rgba(255,255,255,0.4);
-
-    span{
-      font-size: 20px; 
-      letter-spacing: -0.02em;  
-      line-height: 24px;
-    }
   }
 }
 

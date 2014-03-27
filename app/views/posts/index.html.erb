@@ -1,39 +1,23 @@
-<section id="column-left">
-  <!--<h1>
-    <span>epicentre:</span><br>
-    <%#= session[:address] %><br>
-    <span>alert radius:</span><br>
-    <%#= session[:distance] %>km
-  </h1>-->
-</section>
-<section id="column-right">
-  <div class="inner">
-    <!-- run the loop for each post -->
-    <% @posts.each do |post| %>
-      
-        <div class="post-teaser">
-          <div class="unpopped" id="post<%= post.id %>">
-          <!-- circle with image and user rating - show different styles according to rating -->
-          <div class="post-image" style="background: url(<%= post.image_object %>); background-size: cover;">
-            <% if post.rating_total && post.rating_total > 0 %>
-              <span class="rating-good"><%= post.rating_total %></span>
-              <span class="rating-count"><%= post.rating_count %></span>
-            <% elsif post.rating_total && post.rating_total <= 0 %>
-              <span class="rating-bad"><%= post.rating_total %></span>
-              <span class="rating-count"><%= post.rating_count %></span>
-            <% else %> 
-              <span class="info">no rating</span>
-            <% end %>
-          </div>
-          <!-- further details about post -->
-          <div class="details">
-            <p class="address"><%= post.address %></p>
-            <h2><%= link_to(post.title, post) %></h2>
-            <p class="posted">happened <%= time_ago_in_words(post.created_at) %> ago</p>
-          </div>
-        </div>
-      </div>
+<div id="helper">
+  <p>Mouse over a marker to see what's going on, click a marker to see the full story.<br>
+    <a href='#' onclick="toggle_visibility('options');return false;">Click here for more info</a></p>
+  <div id="options" class="toggle-off">
+    <h1><span>current focus</span> <%= params[:address] %><br>
+      <span><%= params[:distance] %>km radius</span></h1>
+    <%= form_tag("/index", method: "post") do %>
+      <%= label_tag(:address, "Refocus on") %>
+      <%= text_field_tag(:address, session[:address], :autofocus => true)%>
+      <%= label_tag(:distance, "Search radius") %>
+      <%= range_field_tag(:distance, value = session[:distance], options = {:min => 1, :max => 10})%>
+      <%= submit_tag("Go") %>
     <% end %>
   </div>
-</section>
+</div>
+<!-- run the loop for each post -->
+<% @posts.each do |post| %>
+  <div class="unpopped" id="post<%= post.id %>">
+    <%= render :partial => 'users/postloop', :locals => {:post => post} %>
+  </div>
+<% end %>
+
 <div id='map-canvas'></div>

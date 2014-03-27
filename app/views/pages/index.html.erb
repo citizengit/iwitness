@@ -1,7 +1,7 @@
 <section id="column-left" class="home">
-  <%= image_tag("epicenter-large.png", :alt => "epicenter") %>
+  <%#= image_tag("epicenter-large.png", :alt => "epicenter") %>
   <h1>get informed</h1>
-  <h2>you never know where you might land
+  <h2>you never know where you might land</h2>
 </section>
 <section id="column-right" class="toggle-off">
   
@@ -23,12 +23,13 @@
   
   <!-- search box -->
   <div class="innersearch">
-    <p>
+    <h3>
       Start your search here
       <% if @current_user.present? %>
         or <a href='#' onclick="toggle_visibility('column-right');return false;">Post News Now</a>
       <% end %>
-    </p>  
+    </h3>
+    <p>Wherever are and wherever you want to go, EPICENTRE gives you the latest news as it happens. We have people on the ground everywhere - You are one of them.</p>
     <%= form_tag("/index", method: "post") do %>
       <%= label_tag(:address, "Search focus") %>
       <%= text_field_tag(:address, session[:address], :autofocus => true)%>
