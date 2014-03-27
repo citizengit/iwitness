@@ -1,4 +1,5 @@
 <section class="details">
+  <%= image_tag(@post.image_object) %>
   <h1><span>Edit</span> Your Post</h1>
   <% if @post.errors.any? %>
     <h4>Please fix the following <%= 'error'.pluralize(@post.errors.count)%> before resubmitting form</h4>

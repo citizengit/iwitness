@@ -14,10 +14,11 @@
 #  longitude   :float
 #  created_at  :datetime
 #  updated_at  :datetime
+#  imgurl      :text
 #
 
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :image, :rating_up, :rating_down, :user_id, :address, :latitude, :longitude
+  attr_accessible :title, :body, :image, :imgurl, :rating_up, :rating_down, :user_id, :address, :latitude, :longitude
   belongs_to :user
   has_and_belongs_to_many :categories
 
@@ -42,18 +43,8 @@ class Post < ActiveRecord::Base
     ( self.rating_up.present? ? self.rating_up : 0 ) + ( self.rating_down.present? ? self.rating_down : 0 )
   end
 
-
-
-    # if @post.rating_up && @post.rating_down
-    #   @rating = @post.rating_up - @post.rating_down
-    # elsif @post.rating_up && !@post.rating_down
-    #   @rating = @post.rating_up
-    # elsif !@post.rating_up && @post.rating_down
-    #   @rating = @post.rating_down
-    # else
-    #   @rating = "this post has not been rated"
-    # end
-
-
+  def image_object
+    self.image.present? ? self.image : self.imgurl
+  end
 
 end

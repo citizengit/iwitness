@@ -8,9 +8,22 @@
     <%= f.text_area :body , :placeholder => "Tell people all about it", size: "77x6" %>
   </p>
   <p>
-    <%= f.label :image %>
-    <%#= f.text_area :image, :placeholder => "URL of your photo"%>
-    <%= f.file_field :image %>
+    
+  </p>  
+  <p>
+    
+    <% if @post.image.path.present? %>
+      <label>
+        <%= f.check_box :remove_image %> Remove current image (<%= @post.image.path.split('/').last %>)
+      </label>
+    <% else %>
+      <%= f.label :image, "Upload an image from your computer" %>
+      <%= f.file_field :image, :accept => "image/gif, image/jpeg, image/svg, image/jpg, image/png" %>
+      <span class="info">OR</span>
+      <%= f.label :imgurl, "Please enter an image URL" %>
+      <%= f.text_field :imgurl, :placeholder => "URL of your photo or upload an image below"%>
+    <% end %>
+    
   </p>  
   <p>
     <%= f.label :address %>

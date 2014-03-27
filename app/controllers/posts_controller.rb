@@ -48,6 +48,9 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find params[:id]
+    if params[:post]["remove_image"] == "1"
+      @post.remove_image!
+    end
     @post.update_attributes params[:post]
     redirect_to @post
   end

@@ -14,7 +14,7 @@
         <div class="post-teaser">
           <div class="unpopped" id="post<%= post.id %>">
           <!-- circle with image and user rating - show different styles according to rating -->
-          <div class="post-image" style="background: url(<%= post.image%>); background-size: cover;">
+          <div class="post-image" style="background: url(<%= post.image_object %>); background-size: cover;">
             <% if post.rating_total && post.rating_total > 0 %>
               <span class="rating-good"><%= post.rating_total %></span>
               <span class="rating-count"><%= post.rating_count %></span>
