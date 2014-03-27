@@ -2,9 +2,15 @@ User.destroy_all
 Post.destroy_all
 Category.destroy_all
 
-u1 = User.create(:name => 'Kriss', :email => "kriss@epicenter.com", :image => "https://pbs.twimg.com/profile_images/378800000791214266/91d5a6b1e45bb7b5d7d2cba132dcf59d.jpeg", :address => "16 Catherine st, leichhardt", :password => "pass", :password_confirmation => "pass", :admin => true)
-u2 = User.create(:name => 'Sally', :email => "sally@epicenter.com", :image => "http://www.mondaq.com/images/profile/individual/lady.jpg", :address => "18 Catherine st, leichhardt", :password => "pass", :password_confirmation => "pass",  :admin => true)
-u3 = User.create(:name => 'Mum', :email => "mum@epicenter.com", :image => "http://wtaa.com.au/images/education-summit/speakers/Inta_Heimanis.jpg", :address => "20 dixson avenue, dulwich hill", :password => "pass", :password_confirmation => "pass")
+u1 = User.create(:name => 'Kriss', :email => "kriss@epicenter.com", :image => "https://pbs.twimg.com/profile_images/378800000791214266/91d5a6b1e45bb7b5d7d2cba132dcf59d.jpeg", :address => "16 Catherine st, leichhardt", :password => "password", :password_confirmation => "password")
+u2 = User.create(:name => 'Sally', :email => "sally@epicenter.com", :image => "http://www.mondaq.com/images/profile/individual/lady.jpg", :address => "18 Catherine st, leichhardt", :password => "password", :password_confirmation => "password")
+u3 = User.create(:name => 'Mum', :email => "mum@epicenter.com", :image => "http://wtaa.com.au/images/education-summit/speakers/Inta_Heimanis.jpg", :address => "20 dixson avenue, dulwich hill", :password => "password", :password_confirmation => "password")
+
+u1.admin = true
+u2.admin = true
+
+u1.save
+u2.save
 
 p1 = Post.create(:title => 'News is happening!', :body => "Lots of text about the news item that happened at this point - ooh it's exciting isn't it!", :imgurl => 'http://www.myfuturebuilding.org/wp-content/gallery/city-building/city-buildings.jpg', :address => "parramatta rd, petersham", :rating_up => 1, :rating_down => 0)
 p2 = Post.create(:title => 'Car crash!', :body => "Is blocking traffic on parramatta road", :imgurl => 'http://villagetattler.com/wp-content/uploads/2011/02/park-ave-crash-2.jpg', :address => "parramatta rd, leichhardt", :rating_up => 5, :rating_down => 0)

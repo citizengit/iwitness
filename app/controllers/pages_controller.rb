@@ -1,15 +1,18 @@
 class PagesController < ApplicationController
 
   def index
+    # check for saved address - if no saved address, get current locaton
     if !session[:address]
-      @address = request.location
-      if @address.longitude == '0.0' && @address.latitude == '0.0'
-        #default address to get around testing environment
-        @address = "608 Harris St, Sydney"
+      # work around for how geocoder checks for addresses
+      ip = request.remote_ip
+      if (ip == '127.0.0.1')
+        address = "608 Harris St, Sydney"
       else
-        session[:address] = @address
-        session[:distance] = 5
+        address = request.location
       end
+      session[:address] = address
+      session[:distance] = 5
     end
   end
+  
 end
