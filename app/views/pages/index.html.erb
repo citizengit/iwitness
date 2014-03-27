@@ -1,31 +1,37 @@
 <section id="column-left" class="home">
-    <h1>stay informed</h1>
+    <h1>get informed</h1>
     <h2>instantly. where ever you may land.
 </section>
-<section id="column-right">
+<section id="column-right" class="toggle-off">
   
+  <!-- if logged in, give user th eoption of posting from homepage -->
   <% if @current_user.present? %>
-    <div id="post-user">
-      <div class="post-image" style="background: url(<%= @current_user.image %>); background-size: cover;">
-      </div>
-      
+    <div class="innerpost">
+      <%= render :partial => 'posts/form' %>
+      <p><a href='#' onclick="toggle_visibility('column-right');return false;">Or go back to search options</a></p>
       <!-- show user info -->
+      <div id="post-user">
+        <div class="post-image" style="background: url(<%= @current_user.image %>); background-size: cover;">
+      </div>
       <h2><%= link_to(@current_user.name, user_path(@current_user)) %></h2>
-      <p class="info"><%= @current_user.posts.count%> <%= 'post'.pluralize(@current_user.posts.count)%> :: honesty rating <%= number_to_percentage(@current_user.rating*100, precision: 0)%></p>
+        <p class="info">
+          <%= @current_user.posts.count%> <%= 'post'.pluralize(@current_user.posts.count)%> :: honesty rating <%= number_to_percentage(@current_user.rating*100, precision: 0)%></p>
+      </div>
     </div>
   <% end %>
-
-  <div class="inner">
-    <%= render :partial => 'posts/form' %>
-  </div>
-
-  <div class="inner">
-    <p>Login at top to post news</p>
-    <p>Start your search here</p>
+  
+  <!-- search box -->
+  <div class="innersearch">
+    <p>
+      Start your search here
+      <% if @current_user.present? %>
+        or <a href='#' onclick="toggle_visibility('column-right');return false;">Post News Now</a>
+      <% end %>
+    </p>  
     <%= form_tag("/index", method: "post") do %>
-      <%= label_tag(:address, "Your epicentre") %>
+      <%= label_tag(:address, "Search focus") %>
       <%= text_field_tag(:address, session[:address], :autofocus => true)%>
-      <%= label_tag(:distance, "Informational radius") %>
+      <%= label_tag(:distance, "Search radius") %>
       <%= range_field_tag(:distance, value = session[:distance], options = {:min => 1, :max => 10})%>
       <%= submit_tag("Go") %>
     <% end %>

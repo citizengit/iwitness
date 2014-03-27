@@ -6,7 +6,7 @@ body.pages.index{
   }
   
   h2{
-    padding: 0 25px;
+    padding: 0 25px 20px 25px;
     color: #FFF;
     font-weight: 300;
     font-size: 30px;
@@ -16,22 +16,61 @@ body.pages.index{
     background: url(http://3.bp.blogspot.com/-JR80Vah3CNw/T_M_aXP7fJI/AAAAAAAAAWQ/yOWwWejGbkM/s1600/skydive.jpg) no-repeat;
     background-size: cover;
   }
-
-  .inner{
+  #column-right{
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+  }
+  .innersearch,
+  .innerpost{
     margin: 20px;
-    margin-top: 100%;
-    background: rgba(255,255,255,0.8);
+    background: rgba(40,40,40,0.8);
     border-radius: 5px;
     padding: 10px;
     z-index: 5;
-    position: relative;
+    transition: all 2s ease;
+    position: absolute;
+    width: 83%;
+  }
+  .innerpost label{
+    display: none;
+  }
+  .innerpost label.homeshow{
+    display: block;
+  }
+  input[type="submit"]{
+    width: 96%;
+  }
+  ul.check-box li{
+    margin: .5em;
   }
 
   #post-user{
     background: rgba(40,40,40,0.4);
+    clear: both;
   }
 
 }
+/********************************** special stuff for toggling the homepage forms *****/
+#column-right.toggle-on .innerpost{
+  top: 0px;
+}
+#column-right.toggle-on .innersearch{
+  top: -700px;
+}
+
+#column-right.toggle-off .innerpost{
+  top: -700px;
+}
+#column-right.toggle-off .innersearch{
+  top: 0px;
+}
+
+
+
+
+
+
 
 /********************************** special stuff for the login form in the header *****/
 ul#user{

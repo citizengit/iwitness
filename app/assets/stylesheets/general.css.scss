@@ -61,6 +61,11 @@ h4{
 .orange{
   color: #F60 !important;
 }
+p.right{
+  float: right;
+  margin-right: 10px;
+  text-align: right;
+}
 
 /***************************************** navigations */
 header,
@@ -156,13 +161,18 @@ header nav a:hover{
   min-height: 600px;
   margin: 0 auto;
   background: #333;
+  /* thanks to http://www.colorzilla.com/gradient-editor/ */
+  background: #707070; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover,  #707070 0%, #333333 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#707070), color-stop(100%,#333333)); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover,  #707070 0%,#333333 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover,  #707070 0%,#333333 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover,  #707070 0%,#333333 100%); /* IE10+ */
+  background: radial-gradient(ellipse at center,  #707070 0%,#333333 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#707070', endColorstr='#333333',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4);
   display: table;
   z-index: 0;
-
-  section{
-    
-  }
 }
 #column-left{
   width: 63%;
@@ -196,7 +206,8 @@ form textarea{
   border-radius: 5px;
   border: none;
   box-shadow: none;
-  font-size: 16px;
+  font-size: 14px;
+  color: #333;
 }
 form input.field-short{
   width: 46%;

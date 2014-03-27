@@ -17,11 +17,11 @@
         <%= f.check_box :remove_image %> Remove current image (<%= @post.image.path.split('/').last %>)
       </label>
     <% else %>
-      <%= f.label :image, "Upload an image from your computer" %>
+      <%= f.label :image, "Upload an image from your computer", :class => "homeshow" %>
       <%= f.file_field :image, :accept => "image/gif, image/jpeg, image/svg, image/jpg, image/png" %>
       <span class="info">OR</span>
-      <%= f.label :imgurl, "Please enter an image URL" %>
-      <%= f.text_field :imgurl, :placeholder => "URL of your photo or upload an image below"%>
+      <%= f.label :imgurl, "Image URL" %>
+      <%= f.text_field :imgurl, :placeholder => "URL of your photo"%>
     <% end %>
     
   </p>  

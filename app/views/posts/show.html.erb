@@ -20,27 +20,9 @@
   <div id="post-user">
     <div class="post-image" style="background: url(<%= @post.user.image%>); background-size: cover;">
     </div>
-    <!-- show rating +/- buttons -->
-    <% if @current_user %>
-      <div class="post-rating">
-        <span class="rating-good">
-          <%= form_tag(post_path(@post), method: "post") do %>
-            <%= hidden_field_tag(:rating_up, 1) %>
-            <%= submit_tag("+1") %>
-          <% end %>
-        </span>
-        <span class="rating-bad">
-          <%= form_tag(post_path(@post), method: "post") do %>
-            <%= hidden_field_tag(:rating_down, 1) %>
-            <%= submit_tag("-1") %>
-          <% end %>
-        </span>
-      </div>
-    <% else %>
-      <p class="info right">
-        You need to register or login to vote
-      </p>
-    <% end %>
+    
+
+    
     <!-- show post rating -->
     <div class="post-rating">
       <% if @post.rating_total && @post.rating_total > 0 %>
@@ -61,6 +43,37 @@
         <span class="info">no rating</span>
       <% end %>
     </div>
+
+    <!-- show rating +/- buttons -->
+    <% if @current_user %>
+      <% if flash[:notice].present?  %>
+        <p class="info right">
+          <%= flash[:notice] %>
+        </p>
+      <% else %>
+        <div class="post-rating">
+          <span class="rating-good">
+            <%= form_tag(post_path(@post), method: "post") do %>
+              <%= hidden_field_tag(:rating_up, 1) %>
+              <%= submit_tag("+1") %>
+            <% end %>
+          </span>
+          <span class="rating-bad">
+            <%= form_tag(post_path(@post), method: "post") do %>
+              <%= hidden_field_tag(:rating_down, 1) %>
+              <%= submit_tag("-1") %>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="info right">
+        You need to register or login to vote
+      </p>
+    <% end %>
+
+
+
     <!-- show user info -->
     <h2><%= link_to(@post.user.name, user_path(@post.user)) %></h2>
     <p class="info"><%== postuserrating %></p>

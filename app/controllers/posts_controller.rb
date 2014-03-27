@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   layout "posts", :only => :index
   layout "application" , :except => :index
 
-  before_filter :check_if_logged_in, :except => [:show, :index]
+  before_filter :check_if_logged_in, :except => [:show, :index, :all]
 
   def index
     @posts = Post.near(params[:address], params[:distance], {:units => :km})
@@ -61,6 +61,7 @@ class PostsController < ApplicationController
       redirect_to @post
     end
     @post.save
+    flash[:notice] = "Thanks for your vote"
     redirect_to @post
   end
 
