@@ -112,3 +112,25 @@ Wow. I don't think I can write it all down, but some highlights:
 #THanks!
 
 Bloody everyone!
+
+===
+more info
+
+      +----------------------+-------+-------+---------+---------+-----+-------+
+      | Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
+      +----------------------+-------+-------+---------+---------+-----+-------+
+      | Controllers          |   291 |   239 |       7 |      37 |   5 |     4 |
+      | Helpers              |   106 |    89 |       0 |       5 |   0 |    15 |
+      | Models               |   112 |    48 |       3 |       4 |   1 |    10 |
+      | Mailers              |     0 |     0 |       0 |       0 |   0 |     0 |
+      | Javascripts          |    22 |     0 |       0 |       0 |   0 |     0 |
+      | Libraries            |     0 |     0 |       0 |       0 |   0 |     0 |
+      | Controller tests     |   117 |    93 |       3 |       0 |   0 |     0 |
+      | Helper tests         |    12 |     9 |       3 |       0 |   0 |     0 |
+      | Model tests          |     0 |     0 |       0 |       0 |   0 |     0 |
+      | Mailer tests         |     0 |     0 |       0 |       0 |   0 |     0 |
+      | Integration tests    |     0 |     0 |       0 |       0 |   0 |     0 |
+      +----------------------+-------+-------+---------+---------+-----+-------+
+      | Total                |   660 |   478 |      16 |      46 |   2 |     8 |
+      +----------------------+-------+-------+---------+---------+-----+-------+
+        Code LOC: 376     Test LOC: 102     Code to Test Ratio: 1:0.3
