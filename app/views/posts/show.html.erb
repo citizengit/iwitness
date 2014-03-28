@@ -4,7 +4,7 @@
   <p class="main">
     <%= @post.body %>
   </p>
-  <p class="info"><%= @post.address %> :: <%= time_ago_in_words(@post.created_at) %> ago</p>
+  <p class="info">  <%= link_to @post.address, posts_path(:address => @post.address, :distance => 1), :method=> :get %> :: <%= time_ago_in_words(@post.created_at) %> ago</p>
 
   <nav class="meta">
     <ul>
