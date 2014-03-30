@@ -27,6 +27,7 @@ class SessionController < ApplicationController
     user = User.where(:name => params[:name]).first
     if user.present? && user.authenticate(params[:password])
       session[:user_id] = user.id
+      session[:posts_voted] = []
       redirect_to root_path
     else
       session[:user_id] = nil
@@ -37,6 +38,7 @@ class SessionController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:posts_voted] = nil 
     redirect_to root_path
   end
 

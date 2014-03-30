@@ -47,4 +47,27 @@ class Post < ActiveRecord::Base
     self.image.present? ? self.image : self.imgurl
   end
 
+  def self.sort_posts(preference)
+    case preference
+    when 'popular'
+      #self in this context is the Post class; 
+      @posts = self.order('rating_up ASC')
+    when 'debunked'
+      @posts = self.order('rating_down ASC')
+    when 'latest'
+      @posts = self.all.sort
+    when 'oldest'
+      @posts = self.all.sort.reverse
+    when 'closest'
+      @posts = self.near(session[:address])
+    when 'furthest'
+      @posts = self.near(session[:address]).reverse
+    when 'alphabetical'
+      @posts = self.order('title ASC')
+    else
+      @posts = self.all.sort
+    end
+
+  end
+
 end
