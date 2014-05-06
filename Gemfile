@@ -54,3 +54,7 @@ group :development do
   gem 'better_errors' 
   gem 'annotate'
 end
+
+# new relic
+
+gem 'newrelic_rpm'
