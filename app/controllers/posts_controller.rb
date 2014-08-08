@@ -17,24 +17,8 @@ class PostsController < ApplicationController
 
   def all
     @title = params[:sort_by]
-    case params[:sort_by]
-    when 'popular'
-      @posts = Post.order('rating_up ASC')
-    when 'debunked'
-      @posts = Post.order('rating_down ASC')
-    when 'latest'
-      @posts = Post.all.sort
-    when 'oldest'
-      @posts = Post.all.sort.reverse
-    when 'closest'
-      @posts = Post.near(session[:address])
-    when 'furthest'
-      @posts = Post.near(session[:address]).reverse
-    when 'alphabetical'
-      @posts = Post.order('title ASC')
-    else
-      @posts = Post.all.sort
-    end
+    @posts = Post.sort_posts(@title)
+    #When possible take the logic out of the controller and put it in the model; 
   end
 
   def show
@@ -57,8 +41,10 @@ class PostsController < ApplicationController
 
   def vote
     @post = Post.find params[:id]
+    session[:posts_voted] << @post.id
     if params[:rating_up]
       @post.rating_up == nil ? ( @post.rating_up = 1 ) : ( @post.rating_up += 1 )
+      #To avoid this ternary operatory, when you create a new post you could assign rating_up and rating_down a value of 0; 
     elsif params[:rating_down]
       @post.rating_down == nil ? ( @post.rating_down = 1 ) : ( @post.rating_down += 1 )
     else
